@@ -10,10 +10,25 @@ package bankassignment;
 public class CurrentAccount extends Account {
      
     // constructor  
-    public CurrentAccount (int accountType, int initialBalance)                       
+    public CurrentAccount (int accountType, double initialBalance)                       
     { 
         this.accountBalance = initialBalance;
         this.accountType = accountType;
+    }
+    
+    public void deposit(double amountToDeposit){
+        this.accountBalance = this.accountBalance + amountToDeposit;
+        
+        // add an extra £10 if deposit is over £500
+        if (amountToDeposit >= 500)
+        {
+            this.accountBalance = this.accountBalance + 10;
+            System.out.println("You deposited more than £500, here is £10.");
+        }
+    }
+    
+    public void withdrawl(double amountToWithdraw) {
+        this.accountBalance = this.accountBalance - amountToWithdraw;
     }
 
 }
