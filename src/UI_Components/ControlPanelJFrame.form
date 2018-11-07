@@ -122,11 +122,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Create New Account"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateAccountActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnStartSimulation">
       <Properties>
         <Property name="text" type="java.lang.String" value="Start Simulation"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStartSimulationActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnMonthlyGraph">
       <Properties>

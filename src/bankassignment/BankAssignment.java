@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package bankassignment;
-
+import UI_Components.*;
 /**
  *
  * @author ben.martin
@@ -17,13 +17,9 @@ public class BankAssignment {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        CurrentAccount one = new CurrentAccount(0, 1000);
-        //CurrentAccount one = new CurrentAccount(0, 1000);
-        System.out.println("Initial Balance:" + one.getAccountBalance());
+        ControlPanelJFrame controlPanel = new ControlPanelJFrame();
+        controlPanel.setVisible(true);
         
-        
-        Simulation sim = new Simulation(one);
-        sim.StartSimulation();
     }
     
 }

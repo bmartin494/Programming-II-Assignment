@@ -47,8 +47,18 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
         btnTransactionDetails.setText("Transaction Details");
 
         btnCreateAccount.setText("Create New Account");
+        btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateAccountActionPerformed(evt);
+            }
+        });
 
         btnStartSimulation.setText("Start Simulation");
+        btnStartSimulation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartSimulationActionPerformed(evt);
+            }
+        });
 
         btnMonthlyGraph.setText("Monthly Graph");
 
@@ -129,6 +139,20 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
 
         System.exit(0);
     }//GEN-LAST:event_exit_jMenuItemActionPerformed
+
+    private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
+        // TODO add your handling code here:
+        new CreateAccountJFrame().setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnCreateAccountActionPerformed
+
+    private void btnStartSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartSimulationActionPerformed
+        // TODO add your handling code here:
+        new SimulatorJFrame().setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnStartSimulationActionPerformed
 
     /**
      * @param args the command line arguments

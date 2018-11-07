@@ -36,13 +36,14 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         btnTransaction = new javax.swing.JButton();
         lblTimerName1 = new javax.swing.JLabel();
         lblTimerName2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnStartSimulation = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
+        btnBackNav = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        startSim_jMenuItem = new javax.swing.JMenuItem();
+        jMenuItemControlPanel = new javax.swing.JMenuItem();
         exit_jMenuItem = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
@@ -68,7 +69,12 @@ public class SimulatorJFrame extends javax.swing.JFrame {
 
         lblTimerName2.setText("Current");
 
-        jButton1.setText("Start Simulation");
+        btnStartSimulation.setText("Start Simulation");
+        btnStartSimulation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartSimulationActionPerformed(evt);
+            }
+        });
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -79,10 +85,22 @@ public class SimulatorJFrame extends javax.swing.JFrame {
 
         jButton2.setText("View All Transactions");
 
+        btnBackNav.setText("Back");
+        btnBackNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackNavActionPerformed(evt);
+            }
+        });
+
         jMenu2.setText("File");
 
-        startSim_jMenuItem.setText("Start Simulation");
-        jMenu2.add(startSim_jMenuItem);
+        jMenuItemControlPanel.setText("Control Panel");
+        jMenuItemControlPanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemControlPanelActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemControlPanel);
 
         exit_jMenuItem.setText("Exit");
         exit_jMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -105,24 +123,22 @@ public class SimulatorJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblTransactionAmount)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblTransactionAmount)
-                                .addGap(147, 147, 147))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblTimerName1)
+                                    .addComponent(lblTimerName))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblTimerName1)
-                                            .addComponent(lblTimerName))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblCountdown)
-                                            .addComponent(lblTimerName2)))
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(lblCountdown)
+                                    .addComponent(lblTimerName2)))
+                            .addComponent(btnStartSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,7 +154,9 @@ public class SimulatorJFrame extends javax.swing.JFrame {
                         .addComponent(jButton2)))
                 .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
+                .addContainerGap()
+                .addComponent(btnBackNav)
+                .addGap(74, 74, 74)
                 .addComponent(lblCreateAccTitle)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -146,8 +164,10 @@ public class SimulatorJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblCreateAccTitle)
-                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCreateAccTitle)
+                    .addComponent(btnBackNav))
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -172,18 +192,36 @@ public class SimulatorJFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStartSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnStartSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartSimulationActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnStartSimulationActionPerformed
+
     private void exit_jMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_jMenuItemActionPerformed
 
         System.exit(0);
     }//GEN-LAST:event_exit_jMenuItemActionPerformed
+
+    private void btnBackNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackNavActionPerformed
+
+        new ControlPanelJFrame().setVisible(true);
+        this.setVisible(false);
+        this.dispose();    }//GEN-LAST:event_btnBackNavActionPerformed
+
+    private void jMenuItemControlPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemControlPanelActionPerformed
+
+        new ControlPanelJFrame().setVisible(true);
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItemControlPanelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,14 +259,16 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBackNav;
+    private javax.swing.JButton btnStartSimulation;
     private javax.swing.JButton btnTransaction;
     private javax.swing.JMenuItem exit_jMenuItem;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemControlPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCountdown;
     private javax.swing.JLabel lblCreateAccTitle;
@@ -238,6 +278,5 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblTimerName1;
     private javax.swing.JLabel lblTimerName2;
     private javax.swing.JLabel lblTransactionAmount;
-    private javax.swing.JMenuItem startSim_jMenuItem;
     // End of variables declaration//GEN-END:variables
 }
