@@ -7,25 +7,39 @@ package bankassignment;
  * @author B00712258
  */
 
-public abstract class Account {
+public class Account {
     
     int accountType;
-    int accountBalance = 0;
+    double accountBalance;
     
     
-    public void deposit(int amountToDeposit){
+    public void deposit(double amountToDeposit){
         
     }
     
-    public void withdrawl(int amountToWithdraw) {
+    public void withdrawl(double amountToWithdraw) {
         
     }
     
     public int getAccountType() {
         return accountType;
     }
-    public int getAccountBalance() {
+    
+    public double getAccountBalance() {
         return accountBalance;
+    }
+    
+    public int getNumOfWithdrawls() {
+        return 0;
+    }
+    
+    public void resetNumOfWithdrawls() {
+        
+    }
+    
+    public void addTax() {
+        
+        
     }
    
 }
