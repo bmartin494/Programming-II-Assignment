@@ -13,12 +13,12 @@ public class Account {
     double accountBalance;
     
     
-    public void deposit(double amountToDeposit){
-        
+    public void setDeposit(double amountToDeposit){
+        //default class gets overwritten in sub classes
     }
     
-    public void withdrawl(double amountToWithdraw) {
-        
+    public void withdrawal(double amountToWithdraw) {
+        //default class gets overwritten in sub classes
     }
     
     public int getAccountType() {
@@ -29,12 +29,12 @@ public class Account {
         return accountBalance;
     }
     
-    public int getNumOfWithdrawls() {
+    public int getNumOfWithdrawals() {
         return 0;
     }
     
-    public void resetNumOfWithdrawls() {
-        
+    public void resetNumOfWithdrawals() {
+        //default class gets overwritten in sub classes
     }
     
     public void addTax() {

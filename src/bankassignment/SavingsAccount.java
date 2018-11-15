@@ -19,25 +19,25 @@ public class SavingsAccount extends Account {
     }
     
     @Override
-    public void deposit(double amountToDeposit){
+    public void setDeposit(double amountToDeposit){
         this.addTax();
         this.accountBalance = this.accountBalance + amountToDeposit;
     }
     
     @Override
-    public void withdrawl(double amountToWithdraw) {
+    public void withdrawal(double amountToWithdraw) {
         this.addTax();
         this.accountBalance = this.accountBalance - amountToWithdraw;
         numOfWithdrawls++;
     }
     
     @Override
-    public int getNumOfWithdrawls() {
+    public int getNumOfWithdrawals() {
         return numOfWithdrawls;
     }
     
     @Override
-    public void resetNumOfWithdrawls() {
+    public void resetNumOfWithdrawals() {
         numOfWithdrawls = 0;
     }
     @Override
