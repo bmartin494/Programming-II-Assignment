@@ -9,7 +9,7 @@ package bankassignment;
 
 public class SavingsAccount extends Account {
     
-   private int numOfWithdrawals = 0;
+   private int numOfWithdrawls = 0;
     
     // constructor
     public SavingsAccount (int accountType, double initialBalance)  
@@ -25,24 +25,24 @@ public class SavingsAccount extends Account {
     }
     
     @Override
-    public void withdrawal(double amountToWithdraw) {
+    public void withdrawl(double amountToWithdraw) {
         this.addTax();
         this.accountBalance = this.accountBalance - amountToWithdraw;
-        numOfWithdrawals++;
+        numOfWithdrawls++;
     }
     
     @Override
-    public int getNumOfWithdrawals() {
-        return numOfWithdrawals;
+    public int getNumOfWithdrawls() {
+        return numOfWithdrawls;
     }
     
     @Override
-    public void resetNumOfWithdrawals() {
-        numOfWithdrawals = 0;
+    public void resetNumOfWithdrawls() {
+        numOfWithdrawls = 0;
     }
     @Override
     public void addTax() {
         // calculate the 3% interest per month and add to the account balance
-        this.accountBalance = (this.accountBalance + (this.accountBalance*0.03));
+        this.accountBalance = this.accountBalance + (this.accountBalance*0.03);
     }
 }

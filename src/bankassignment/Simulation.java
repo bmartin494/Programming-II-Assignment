@@ -5,21 +5,17 @@
 
 package bankassignment;
 
-import UI_Components.SimulatorJFrame;
-
 // import list
 import java.util.*;
 
 public class Simulation 
 {
     Account account = new Account();
-    Transaction newTrans = new Transaction(account, 500);
     
     // constructor  
     public Simulation (Account newAccount)                       
     { 
         this.account = newAccount;
-        
     }
     
     public void StartSimulation()
@@ -33,10 +29,10 @@ public class Simulation
         TimerTask monthlyTransaction = new TimerTask() 
         {
             int month = 0;
-            public void run()
+            public void run() 
             {
                 // generate the monthly transaction
-                newTrans = new Transaction(account, month);
+                Transaction newTrans = new Transaction(account, month);
                 month++;
             }
         };

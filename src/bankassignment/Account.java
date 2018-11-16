@@ -17,7 +17,7 @@ public class Account {
         
     }
     
-    public void withdrawal(double amountToWithdraw) {
+    public void withdrawl(double amountToWithdraw) {
         
     }
     
@@ -29,11 +29,11 @@ public class Account {
         return accountBalance;
     }
     
-    public int getNumOfWithdrawals() {
+    public int getNumOfWithdrawls() {
         return 0;
     }
     
-    public void resetNumOfWithdrawals() {
+    public void resetNumOfWithdrawls() {
         
     }
     

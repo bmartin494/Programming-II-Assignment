@@ -1,20 +1,17 @@
 /**
  * The Transaction class is used to generate a monthly transaction value and 
- * whether it's a deposit or withdrawal.
+ * whether it's a deposit or withdrawl.
  */
 package bankassignment;
 
 // import list
 import java.util.Random;
-import javax.swing.JOptionPane;
 
 public class Transaction 
 {
-    private Account account = new Account();
-    
-    private int month;
-    private int transType;
-    private int transValue;
+    Transaction[] transactionList = new Transaction[5];
+    Account account = new Account();
+    int month;
     
     // constructor for instantation
     public Transaction (Account transAccount, int month)                       
@@ -24,25 +21,40 @@ public class Transaction
         this.generateTransaction();
     }
     
-    private void generateTransaction()
+    // constructor for adding to transactionList
+    public Transaction (int month, int transType, double transValue)
+    {
+        
+    }
+    
+    public void generateTransaction()
     {
         // generate a transaction type and value
         Random r = new Random();
-        transType = r.nextInt((1 - 0) + 1) + 0; // transType of 0 = Withdrawal, 1 = deposit
-        transValue = r.nextInt((2000 - 100) + 1) + 100; // transValue can be from 100 to 2000
+        int transType = r.nextInt((1 - 0) + 1) + 0; // transType of 0 = Withdrawl, 1 = deposit
+        int transValue = r.nextInt((2000 - 100) + 1) + 100; // transValue can be from 100 to 2000
         
-        // ensure the transactio is valid
-        if (validateTransaction() == true)
+        // validate the transaction on the account
+        if (validateTransaction(transType, transValue) == true)
         {
             // update account with the valid transaction
             if (transType == 0)
             {
-                account.withdrawal(transValue);
+                System.out.println("WITHDRAWL");
+                account.withdrawl(transValue);
             }
             else if (transType == 1)
             {
+                System.out.println("DEPOSIT");
                 account.deposit(transValue);
             }
+            
+            // add Transaction to array
+            transactionList[month] =  new Transaction(month, transType, transValue);
+            
+            System.out.println("Month: " + (month+1) + " \ntransType: "+ transType + 
+                    " \ntransValue: " + transValue);
+            
         }
         else
         {
@@ -50,26 +62,27 @@ public class Transaction
             
         }
         
-        // reset withdrawal counter because its a new year
-        if (account.getAccountType() == 1 && month % 12 == 0)
+        // reset withdrawl counter because its a new year
+        if (month == 11)
         {
-            account.resetNumOfWithdrawals();
+            account.resetNumOfWithdrawls();
         }
+
+        System.out.println("New Balance:" +account.getAccountBalance());
     }
     
-    private boolean validateTransaction()
+    public boolean validateTransaction(int transType, int transValue)
     {
         boolean result = true;
         
         // Validating a Current Account
         if (account.getAccountType() == 0)
         {
-            // ensure a withdrawal won't exceed the £1000 overdraft
+            // ensure a withdrawl won't exceed the £1000 overdraft
             if ((transType == 0) && ((account.getAccountBalance() - transValue) < -1000))
             {
-                // output error message
-                JOptionPane.showMessageDialog(null, "Sorry, this transaction will be more than your overdraft!", 
-                        "Invalid Transaction", JOptionPane.ERROR_MESSAGE);
+                // correct error message
+                System.out.println("Sorry, this transaction will be more than your overdraft!");
                 result = false;
             }
         }
@@ -77,22 +90,20 @@ public class Transaction
         // Validating a Savings Account
         if (account.getAccountType() == 1)
         {
-            // ensure the withdrawal is valid
+            // ensure the withdrawl is valid
             if (transType == 0)
             {
-                // ensure this won't be too many withdrawals on the account
-                if (account.getNumOfWithdrawals() > 1)
+                // ensure this won't be too many withdrawls on the account
+                if (account.getNumOfWithdrawls() > 1)
                 {
                     // correct error message
-                    JOptionPane.showMessageDialog(null, "Sorry, you've made too many withdraws this year!", 
-                        "Invalid Transaction", JOptionPane.ERROR_MESSAGE);
+                    System.out.println("Sorry, too many withdrawls this year!");
                     result = false;
                 }
-                // ensure a withdrawal won't exceed the £100 minimum balance
+                // ensure a withdrawl won't exceed the £100 minimum balance
                 if ((account.getAccountBalance() - transValue) < 100)
                 {
-                    JOptionPane.showMessageDialog(null, "Sorry, you can't leave less than £100 in your savings account!", 
-                        "Invalid Transaction", JOptionPane.ERROR_MESSAGE);
+                    System.out.println("Sorry, you can't leave less than £100 in a savings account!");
                     result = false;
                 }
             }
@@ -100,21 +111,4 @@ public class Transaction
      
         return result;
     }
-    
-    public int getTransType()
-    {
-        return this.transType;
-    }
-    
-    public int getTransValue()
-    {
-        return this.transValue;
-    }
-    
-    public int getMonth()
-    {
-        return this.month;
-    }
-    
-
 }
