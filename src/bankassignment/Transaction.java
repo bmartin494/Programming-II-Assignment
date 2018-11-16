@@ -31,7 +31,7 @@ public class Transaction
         transType = r.nextInt((1 - 0) + 1) + 0; // transType of 0 = Withdrawal, 1 = deposit
         transValue = r.nextInt((2000 - 100) + 1) + 100; // transValue can be from 100 to 2000
         
-        // ensure the transactio is valid
+        // ensure the transaction is valid
         if (validateTransaction() == true)
         {
             // update account with the valid transaction
