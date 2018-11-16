@@ -5,6 +5,8 @@
  */
 package UI_Components;
 
+import bankassignment.*;
+
 /**
  *
  * @author ben.martin
@@ -16,6 +18,24 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
      */
     public ControlPanelJFrame() {
         initComponents();
+        
+        
+        Account acc = CreateAccountJFrame.newAccount;
+        // display account type
+        if (acc.getAccountType() == 0)
+        {
+            lblDynamicAccountType.setText("Current");
+            
+        }
+        else if (acc.getAccountType() == 1)
+        {
+            lblDynamicAccountType.setText("Savings");
+        }
+        else
+        {
+            lblDynamicAccountType.setVisible(false);
+        }
+        
     }
 
     /**
