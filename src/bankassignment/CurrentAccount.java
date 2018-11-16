@@ -1,5 +1,7 @@
 package bankassignment;
 
+import javax.swing.JOptionPane;
+
 /**
  * This class is called when a Current account is
  * wanting to be created.
@@ -23,11 +25,12 @@ public class CurrentAccount extends Account {
         if (amountToDeposit >= 500)
         {
             this.accountBalance = this.accountBalance + 10;
-            System.out.println("You deposited more than £500, here is £10.");
+            JOptionPane.showMessageDialog(null, "As you deposited more than £500, we're giving you an extra £10!", 
+                        "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     
-    public void withdrawl(double amountToWithdraw) {
+    public void withdrawal(double amountToWithdraw) {
         this.accountBalance = this.accountBalance - amountToWithdraw;
     }
 
