@@ -179,11 +179,11 @@ public class CreateAccountJFrame extends javax.swing.JFrame {
         }
         catch (NumberFormatException e)
         {
-            JOptionPane.showMessageDialog(null, "Please enter a number.");
+            JOptionPane.showMessageDialog(null, "Please enter a number.","Error Message", JOptionPane.WARNING_MESSAGE);
         }
         catch (IllegalArgumentException e)
         {
-            JOptionPane.showMessageDialog(null, "Please enter a postive number.");
+            JOptionPane.showMessageDialog(null, "Please enter a postive number.","Error Message", JOptionPane.WARNING_MESSAGE);
         }
         
         double deposit = Double.parseDouble(depositInput);
@@ -191,16 +191,16 @@ public class CreateAccountJFrame extends javax.swing.JFrame {
         if (radCurrentAccount.isSelected() && (deposit >= 1))
                 {
                     Account newCurrentAccount = new CurrentAccount(0, deposit);
-                    JOptionPane.showMessageDialog(null, "Current account successfully created!");
+                    JOptionPane.showMessageDialog(null, "Current account successfully created!", "Account Created", JOptionPane.INFORMATION_MESSAGE);
                 }
         else if (radSavingsAccount.isSelected() && (deposit >= 100))
         {
             Account newSavingsAccount = new SavingsAccount(1, deposit);
-            JOptionPane.showMessageDialog(null, "Savings account successfully created!");
+            JOptionPane.showMessageDialog(null, "Savings account successfully created!", "Account Created", JOptionPane.INFORMATION_MESSAGE);
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "This deposit amount does not meet the minimum for this account type.");
+            JOptionPane.showMessageDialog(null, "This deposit amount does not meet the minimum for this account type.","Error Message", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 
