@@ -1,6 +1,6 @@
 /**
  * The Transaction class is used to generate a monthly transaction value and 
- * whether it's a deposit or withdrawl.
+ * whether it's a deposit or withdrawal.
  */
 package bankassignment;
 
@@ -31,7 +31,7 @@ public class Transaction
     {
         // generate a transaction type and value
         Random r = new Random();
-        int transType = r.nextInt((1 - 0) + 1) + 0; // transType of 0 = Withdrawl, 1 = deposit
+        int transType = r.nextInt((1 - 0) + 1) + 0; // transType of 0 = Withdrawal, 1 = deposit
         int transValue = r.nextInt((2000 - 100) + 1) + 100; // transValue can be from 100 to 2000
         
         // validate the transaction on the account
@@ -40,13 +40,13 @@ public class Transaction
             // update account with the valid transaction
             if (transType == 0)
             {
-                System.out.println("WITHDRAWL");
-                account.withdrawl(transValue);
+                System.out.println("WITHDRAWAL");
+                account.withdrawal(transValue);
             }
             else if (transType == 1)
             {
                 System.out.println("DEPOSIT");
-                account.deposit(transValue);
+                account.setDeposit(transValue);
             }
             
             // add Transaction to array
@@ -62,10 +62,10 @@ public class Transaction
             
         }
         
-        // reset withdrawl counter because its a new year
+        // reset Withdrawal counter because its a new year
         if (month == 11)
         {
-            account.resetNumOfWithdrawls();
+            account.resetNumOfWithdrawals();
         }
 
         System.out.println("New Balance:" +account.getAccountBalance());
@@ -78,7 +78,7 @@ public class Transaction
         // Validating a Current Account
         if (account.getAccountType() == 0)
         {
-            // ensure a withdrawl won't exceed the £1000 overdraft
+            // ensure a Withdrawal won't exceed the £1000 overdraft
             if ((transType == 0) && ((account.getAccountBalance() - transValue) < -1000))
             {
                 // correct error message
@@ -90,17 +90,17 @@ public class Transaction
         // Validating a Savings Account
         if (account.getAccountType() == 1)
         {
-            // ensure the withdrawl is valid
+            // ensure the Withdrawal is valid
             if (transType == 0)
             {
-                // ensure this won't be too many withdrawls on the account
-                if (account.getNumOfWithdrawls() > 1)
+                // ensure this won't be too many Withdrawals on the account
+                if (account.getNumOfWithdrawals() > 1)
                 {
                     // correct error message
-                    System.out.println("Sorry, too many withdrawls this year!");
+                    System.out.println("Sorry, too many Withdrawals this year!");
                     result = false;
                 }
-                // ensure a withdrawl won't exceed the £100 minimum balance
+                // ensure a Withdrawal won't exceed the £100 minimum balance
                 if ((account.getAccountBalance() - transValue) < 100)
                 {
                     System.out.println("Sorry, you can't leave less than £100 in a savings account!");

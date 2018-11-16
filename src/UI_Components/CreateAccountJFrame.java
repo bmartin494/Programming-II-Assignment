@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package UI_Components;
-/**
- *
- * @author ben.martin
- */
+import bankassignment.*;
+import javax.swing.JOptionPane;
+
 public class CreateAccountJFrame extends javax.swing.JFrame {
 
+    public static Account newAccount = new Account();
+    
     /**
      * Creates new form CreateAccountJFrame
      */
@@ -59,6 +56,11 @@ public class CreateAccountJFrame extends javax.swing.JFrame {
         btnCreateAccount.setBackground(new java.awt.Color(51, 204, 0));
         btnCreateAccount.setForeground(new java.awt.Color(255, 255, 255));
         btnCreateAccount.setText("Create");
+        btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateAccountActionPerformed(evt);
+            }
+        });
 
         btnBackNav.setText("Back");
         btnBackNav.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +147,7 @@ public class CreateAccountJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exit_jMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_jMenuItemActionPerformed
-
+        
         System.exit(0);
     }//GEN-LAST:event_exit_jMenuItemActionPerformed
 
@@ -162,6 +164,45 @@ public class CreateAccountJFrame extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jMenuItemControlPanelActionPerformed
+
+    private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
+        
+        String depositInput = txtDeposit.getText();
+        
+        try 
+        {
+            double depositCheck = Double.parseDouble(depositInput);
+            if (depositCheck < 0)
+            {
+                throw new IllegalArgumentException();
+            }
+        }
+        catch (NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a number.","Error Message", JOptionPane.WARNING_MESSAGE);
+        }
+        catch (IllegalArgumentException e)
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a postive number.","Error Message", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        double deposit = Double.parseDouble(depositInput);
+        
+        if (radCurrentAccount.isSelected() && (deposit >= 1))
+                {
+                    Account newCurrentAccount = new CurrentAccount(0, deposit);
+                    JOptionPane.showMessageDialog(null, "Current account successfully created!", "Account Created", JOptionPane.INFORMATION_MESSAGE);
+                }
+        else if (radSavingsAccount.isSelected() && (deposit >= 100))
+        {
+            Account newSavingsAccount = new SavingsAccount(1, deposit);
+            JOptionPane.showMessageDialog(null, "Savings account successfully created!", "Account Created", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "This deposit amount does not meet the minimum for this account type.","Error Message", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCreateAccountActionPerformed
 
     /**
      * @param args the command line arguments

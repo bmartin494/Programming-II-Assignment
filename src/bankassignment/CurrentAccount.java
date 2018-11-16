@@ -16,8 +16,9 @@ public class CurrentAccount extends Account {
         this.accountType = accountType;
     }
     
-    public void deposit(double amountToDeposit){
+    public void setDeposit(double amountToDeposit){
         this.accountBalance = this.accountBalance + amountToDeposit;
+        
         
         // add an extra £10 if deposit is over £500
         if (amountToDeposit >= 500)
@@ -27,7 +28,7 @@ public class CurrentAccount extends Account {
         }
     }
     
-    public void withdrawl(double amountToWithdraw) {
+    public void withdrawal(double amountToWithdraw) {
         this.accountBalance = this.accountBalance - amountToWithdraw;
     }
 
