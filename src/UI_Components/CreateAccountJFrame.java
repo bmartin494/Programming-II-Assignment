@@ -168,7 +168,7 @@ public class CreateAccountJFrame extends javax.swing.JFrame {
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         
         String depositInput = txtDeposit.getText();
-        
+        //various input validation checks for the deposit amount field
         try 
         {
             double depositCheck = Double.parseDouble(depositInput);
@@ -188,6 +188,7 @@ public class CreateAccountJFrame extends javax.swing.JFrame {
         
         double deposit = Double.parseDouble(depositInput);
         
+        //current and savings account creation + account selection and minimum deposit validation
         if (radCurrentAccount.isSelected() && (deposit >= 1))
                 {
                     newAccount = new CurrentAccount(0, deposit);
@@ -197,6 +198,10 @@ public class CreateAccountJFrame extends javax.swing.JFrame {
         {
                 newAccount = new SavingsAccount(1, deposit);
             JOptionPane.showMessageDialog(null, "Savings account successfully created!", "Account Created", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if (!radSavingsAccount.isSelected() && !radCurrentAccount.isSelected())
+        {
+            JOptionPane.showMessageDialog(null, "You must select an account type.","Error Message", JOptionPane.WARNING_MESSAGE);            
         }
         else
         {

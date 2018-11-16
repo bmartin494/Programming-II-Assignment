@@ -9,7 +9,7 @@ package bankassignment;
 
 public class Account {
     
-    int accountType;
+    int accountType = 2;
     double accountBalance;
     
     
