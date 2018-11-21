@@ -164,9 +164,9 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
     //takes the user to the banking simulation panel
     private void btnSimulationPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationPanelActionPerformed
 
-        
+        int accCheck = CreateAccountJFrame.newAccount.getAccountType();
         //check to see that the user has created an account before they can access the banking simulation
-        if (CreateAccountJFrame.newAccount.getAccountType() != 2)
+        if (accCheck != 2)
         {
             new SimulatorJFrame().setVisible(true);
             this.setVisible(false);
