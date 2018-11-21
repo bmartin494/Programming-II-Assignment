@@ -19,9 +19,8 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
     public ControlPanelJFrame() {
         initComponents();
         
-        
         Account acc = CreateAccountJFrame.newAccount;
-        // display account type
+        // display account type currently created
         if (acc.getAccountType() == 0)
         {
             lblDynamicAccountType.setText("Current");
@@ -128,14 +127,14 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
                                 .addComponent(lblDynamicAccountType))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(btnTransactionDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnTransactionDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

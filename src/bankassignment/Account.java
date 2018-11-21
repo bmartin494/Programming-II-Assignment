@@ -9,7 +9,7 @@ package bankassignment;
 
 public class Account {
     
-    int accountType;
+    int accountType = 2;
     double accountBalance;
     
     
@@ -39,7 +39,22 @@ public class Account {
     
     public void addTax() {
         
-        
+    }
+    
+    public String getAccountTypeString()
+    {
+        String type = "";
+        // output the correct account string based on the accountType
+        if (accountType == 0)
+        {
+            type = "Current";
+           
+        }
+        else if (accountType == 1)
+        {
+            type = "Savings";
+        }
+        return type;
     }
    
 }

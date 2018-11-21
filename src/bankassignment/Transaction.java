@@ -8,33 +8,40 @@ package bankassignment;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
+
 public class Transaction 
 {
     private Account account = new Account();
+    private TransactionList list = new TransactionList();
     
     private int month;
     private int transType;
     private int transValue;
+    private double newBalance;
     
     // constructor for instantation
     public Transaction (Account transAccount, int month)                       
     { 
         this.account = transAccount;
         this.month = month;
-        this.generateTransaction();
     }
     
-    private void generateTransaction()
+    public Transaction ()                       
+    { 
+
+    }
+    
+    public void generateTransaction()
     {
         // generate a transaction type and value
         Random r = new Random();
         transType = r.nextInt((1 - 0) + 1) + 0; // transType of 0 = Withdrawal, 1 = deposit
         transValue = r.nextInt((2000 - 100) + 1) + 100; // transValue can be from 100 to 2000
         
-        // ensure the transactio is valid
+        // ensure the transaction is valid
         if (validateTransaction() == true)
         {
-            // update account with the valid transaction
+            // update account balance depending on transaction type
             if (transType == 0)
             {
                 account.withdrawal(transValue);
@@ -46,11 +53,14 @@ public class Transaction
         }
         else
         {
-            // add failed transaction to list with message
+            // add failed transaction to listBox
             
         }
         
-        // reset withdrawal counter because its a new year
+        // set new balance of the account after the transaction
+        newBalance = account.getAccountBalance();
+        
+        // if it's a new year for a savings account, reset num of withdraws reset withdrawal counter
         if (account.getAccountType() == 1 && month % 12 == 0)
         {
             account.resetNumOfWithdrawals();
@@ -116,5 +126,9 @@ public class Transaction
         return this.month;
     }
     
+    public double getNewBalance()
+    {
+        return this.newBalance;
+    }
 
 }
