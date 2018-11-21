@@ -124,7 +124,7 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
                             .addComponent(lblDynamicAccountType)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(btnTransactionDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnTransactionDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(19, 19, 19))
         );

@@ -12,9 +12,9 @@ public class SavingsAccount extends Account {
    private int numOfWithdrawls = 0;
     
     // constructor
-    public SavingsAccount (int accountType, double initialBalance)  
+    public SavingsAccount (double initialBalance)  
     { 
-        this.accountType = accountType;
+        this.accountType = 1;
         this.accountBalance = initialBalance;
     }
     

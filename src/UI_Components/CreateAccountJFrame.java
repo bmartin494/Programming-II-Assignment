@@ -191,12 +191,12 @@ public class CreateAccountJFrame extends javax.swing.JFrame {
         //current and savings account creation + account selection and minimum deposit validation
         if (radCurrentAccount.isSelected() && (deposit >= 1))
                 {
-                    newAccount = new CurrentAccount(0, deposit);
+                    newAccount = new CurrentAccount(deposit);
                     JOptionPane.showMessageDialog(null, "Current account successfully created!", "Account Created", JOptionPane.INFORMATION_MESSAGE);
                 }
         else if (radSavingsAccount.isSelected() && (deposit >= 100))
         {
-                newAccount = new SavingsAccount(1, deposit);
+                newAccount = new SavingsAccount(deposit);
             JOptionPane.showMessageDialog(null, "Savings account successfully created!", "Account Created", JOptionPane.INFORMATION_MESSAGE);
         }
         else if (!radSavingsAccount.isSelected() && !radCurrentAccount.isSelected())
