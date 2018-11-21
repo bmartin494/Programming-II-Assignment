@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class ControlPanelJFrame extends javax.swing.JFrame {
 
-    public static Account AccountCheck = new Account();
     
     /**
      * Creates new form ControlPanelJFrame
@@ -164,10 +163,10 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
 
     //takes the user to the banking simulation panel
     private void btnSimulationPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationPanelActionPerformed
-        int accType = AccountCheck.getAccountType();
-        
+
+        int accCheck = CreateAccountJFrame.newAccount.getAccountType();
         //check to see that the user has created an account before they can access the banking simulation
-        if (accType != 2)
+        if (accCheck != 2)
         {
             new SimulatorJFrame().setVisible(true);
             this.setVisible(false);
