@@ -1,34 +1,34 @@
 /**
  * The Transaction class is used to generate a monthly transaction value and 
  * whether it's a deposit or withdrawal.
+ * 
+ * It then validates this transaction against the account type current initialised
+ * and either completes the deposit or withdrawal on the account or outputs an 
+ * appropriate error message.
+ * 
+ * Created by: Rory Sproule
+ * Last Edited: 21/11/18
  */
 package bankassignment;
 
-// import list
+// Import List
 import java.util.Random;
 import javax.swing.JOptionPane;
 
 
 public class Transaction 
 {
-    private Account account = new Account();
-    private TransactionList list = new TransactionList();
+    private Account acc = new Account();
     
-    private int month;
-    private int transType;
-    private int transValue;
+    private int month, transType, transValue;
     private double newBalance;
+    private String errorMessage = "";
     
     // constructor for instantation
     public Transaction (Account transAccount, int month)                       
     { 
-        this.account = transAccount;
+        this.acc = transAccount;
         this.month = month;
-    }
-    
-    public Transaction ()                       
-    { 
-
     }
     
     public void generateTransaction()
@@ -44,26 +44,21 @@ public class Transaction
             // update account balance depending on transaction type
             if (transType == 0)
             {
-                account.withdrawal(transValue);
+                acc.withdrawal(transValue);
             }
             else if (transType == 1)
             {
-                account.setDeposit(transValue);
+                acc.setDeposit(transValue);
             }
-        }
-        else
-        {
-            // add failed transaction to listBox
-            
         }
         
         // set new balance of the account after the transaction
-        newBalance = account.getAccountBalance();
+        newBalance = acc.getAccountBalance();
         
         // if it's a new year for a savings account, reset num of withdraws reset withdrawal counter
-        if (account.getAccountType() == 1 && month % 12 == 0)
+        if (acc.getAccountType() == 1 && month % 12 == 0)
         {
-            account.resetNumOfWithdrawals();
+            acc.resetNumOfWithdrawals();
         }
     }
     
@@ -72,37 +67,40 @@ public class Transaction
         boolean result = true;
         
         // Validating a Current Account
-        if (account.getAccountType() == 0)
+        if (acc.getAccountType() == 0)
         {
             // ensure a withdrawal won't exceed the £1000 overdraft
-            if ((transType == 0) && ((account.getAccountBalance() - transValue) < -1000))
+            if ((transType == 0) && ((acc.getAccountBalance() - transValue) < -1000))
             {
                 // output error message
                 JOptionPane.showMessageDialog(null, "Sorry, this transaction will be more than your overdraft!", 
                         "Invalid Transaction", JOptionPane.ERROR_MESSAGE);
+                errorMessage = ("Transaction would've exceeded the overdraft.");
                 result = false;
             }
         }
         
         // Validating a Savings Account
-        if (account.getAccountType() == 1)
+        if (acc.getAccountType() == 1)
         {
             // ensure the withdrawal is valid
             if (transType == 0)
             {
                 // ensure this won't be too many withdrawals on the account
-                if (account.getNumOfWithdrawals() > 1)
+                if (acc.getNumOfWithdrawals() > 1)
                 {
                     // correct error message
                     JOptionPane.showMessageDialog(null, "Sorry, you've made too many withdraws this year!", 
                         "Invalid Transaction", JOptionPane.ERROR_MESSAGE);
+                    errorMessage = ("Too many withdraws have been made this year.");
                     result = false;
                 }
                 // ensure a withdrawal won't exceed the £100 minimum balance
-                if ((account.getAccountBalance() - transValue) < 100)
+                if ((acc.getAccountBalance() - transValue) < 100)
                 {
                     JOptionPane.showMessageDialog(null, "Sorry, you can't leave less than £100 in your savings account!", 
                         "Invalid Transaction", JOptionPane.ERROR_MESSAGE);
+                    errorMessage = ("Account can't have less than £100.");
                     result = false;
                 }
             }
@@ -129,6 +127,10 @@ public class Transaction
     public double getNewBalance()
     {
         return this.newBalance;
+    }
+    public String getErrorMessage()
+    {
+        return errorMessage;
     }
 
 }
