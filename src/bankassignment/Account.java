@@ -1,11 +1,13 @@
-package bankassignment;
-
 /**
  * This is the abstract class Account, utilised when creating a new account.
  * This will hold all the necessary methods that both it's child classes 
  * (Savings & Current) will require.
- * @author B00712258
+ * 
+ * Created by: Rory Sproule
+ * Last Edited: 21/11/18
  */
+
+package bankassignment;
 
 public class Account {
     
@@ -14,11 +16,11 @@ public class Account {
     
     
     public void setDeposit(double amountToDeposit){
-        //default class gets overwritten in sub classes
+        // default class gets overwritten in sub classes
     }
     
     public void withdrawal(double amountToWithdraw) {
-        //default class gets overwritten in sub classes
+        // default class gets overwritten in sub classes
     }
     
     public int getAccountType() {
@@ -30,25 +32,30 @@ public class Account {
     }
     
     public int getNumOfWithdrawals() {
+        // default class gets overridden in Savings Class
         return 0;
     }
     
     public void resetNumOfWithdrawals() {
-        //default class gets overwritten in sub classes
+        // default class gets overwritten in Savings Class
     }
     
-    public void addTax() {
-        
+    public void addInterest() {
+        // default class gets overwritten in Savings Class
     }
     
+    public double getInterest()
+    {
+        // default class gets overwritten in Savings Class
+        return 0;
+    }
     public String getAccountTypeString()
     {
-        String type = "";
         // output the correct account string based on the accountType
+        String type = "Not Set";
         if (accountType == 0)
         {
             type = "Current";
-           
         }
         else if (accountType == 1)
         {
@@ -57,5 +64,6 @@ public class Account {
         return type;
     }
    
+    
 }
 

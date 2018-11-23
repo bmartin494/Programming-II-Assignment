@@ -2,12 +2,18 @@
  * This is the Simulator form, it is used to run the simulation of monthly transactions
  * on the account created in the Create Account form. When the simulation is started,
  * a new Transaction (used to represent a month's activity) is created, with all it's
- * details outputted to the necessary GUI components.
- */
+ * details outputted to the necessary GUI components. Each transaction is also added to 
+ * a collection to be analysed in the graph or report.
+ * 
+ * Created by: Ben Martin
+ * Last Edited: 21/11/18
+ */ 
 package UI_Components;
 
-// import list
-import bankassignment.*;
+// Import List
+import bankassignment.Account;
+import bankassignment.Transaction;
+import bankassignment.TransactionList;
 import static java.lang.Thread.sleep;
 import javax.swing.JOptionPane;
 
@@ -20,10 +26,12 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     private static boolean simStatus = true;
     private static int seconds = 5;
     private static int month = 0;
-    private static TransactionList list = new TransactionList();
+    
+    private final static TransactionList list = new TransactionList();
     private final Account acc = CreateAccountJFrame.newAccount;
     
     public SimulatorJFrame() {
+        
         initComponents();
         
         // set countdown timer
@@ -31,6 +39,14 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         
         // set initial account details
         displayAccountDetails();
+        
+        // set maximum and minimum account balances to the initial balance
+        list.setMaxBalance(acc.getAccountBalance());
+        list.setMinBalance(acc.getAccountBalance());
+        
+        // add initial balance to the ListBox to improve readability
+        lstTransactions.add("Initial Balance: £" + acc.getAccountBalance());
+        lstTransactions.add("----------------------------------------");
     }
     
     @SuppressWarnings("unchecked")
@@ -258,9 +274,9 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         /**
          * This is beginning of the methods we have created to make our own timer.
          * We understand there are timer classes available out there but we found the
-         * simple 5 second countdown could be very easily implemented using a simple 
-         * thread sleep method. We have tried to fully document how it works as the methods
-         * are used, but we basically use the sleep method to decrement a second variable 
+         * 5 second countdown could be very easily implemented using a simple thread
+         * sleep method. We have tried to fully document how it works as the methods
+         * are used, but basically, we use the sleep method to decrement a seconds variable 
          * every second, and once it hits 0, the monthly processes are carried out.
          */
 
@@ -287,6 +303,8 @@ public class SimulatorJFrame extends javax.swing.JFrame {
             }
             
         };
+        
+        // start the new thread
         t.start();
     }
     
@@ -319,8 +337,10 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         newTrans.generateTransaction();
         
         // add transaction to TransactionList
-        //Transaction validTrans = new Transaction(month, acc.getAccountBalance());
-        list.transList.add(newTrans);
+        list.getList().add(newTrans);
+        
+        // check if the new balance is now the minimum or maximum balance of the account
+        list.compareNewBalance(acc.getAccountBalance(), month);
         
         // update Simulator GUI Components
         updateGUI(newTrans);
@@ -359,12 +379,23 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     
     private void addTransactionToListBox(Transaction newTrans)
     {
+        
         // output the details of the transaction to the list box in a suitable format
         lstTransactions.add("NEW TRANSACTION:");
         lstTransactions.add("Month: " + newTrans.getMonth());
         lstTransactions.add("Type: " + transTypeString(newTrans));
         lstTransactions.add("Value: £" + newTrans.getTransValue());
+        // if its a savings account, output the interest calculated
+        if (acc.getAccountType() == 1)
+        {
+            lstTransactions.add("Interest: £" + String.format("%.2f", acc.getInterest()));
+        }
         lstTransactions.add("New Balance: £" + String.format("%.2f", acc.getAccountBalance()));
+        // if the transaction ran into an error, output it
+        if(!newTrans.getErrorMessage().isEmpty())
+        {
+            lstTransactions.add(newTrans.getErrorMessage());
+        }
         lstTransactions.add("----------------------------------------");
     }
     
@@ -425,7 +456,7 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         
         // set status of the simulation to false to pause it
         simStatus = false;
-        JOptionPane.showMessageDialog(null, "Click start simulation to resume.", 
+        JOptionPane.showMessageDialog(null, "Click Start Simulation to resume.", 
                 "Simulation Stopped", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnStopSimulationActionPerformed
 
@@ -439,9 +470,18 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackNavActionPerformed
 
     private void btnMaxMinBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaxMinBalanceActionPerformed
-
-        list.getMaxAndMinBalances();
         
+        
+        if (simStatus = true)
+        {
+            simStatus = false;
+            JOptionPane.showMessageDialog(null, "The simulation has been paused, to allow the max and "
+                    + "min account balances report to be viewed. \nClick Start Simulation to resume.", 
+                "Simulation Stopped", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        // output the maximum and minimum values the balance have been so far in the simulation
+        list.getMaxAndMinBalances();
     }//GEN-LAST:event_btnMaxMinBalanceActionPerformed
 
     private void btnMonthlyBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonthlyBalanceActionPerformed

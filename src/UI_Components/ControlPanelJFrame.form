@@ -59,29 +59,21 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="btnMonthlyGraph" alignment="2" max="32767" attributes="0"/>
-                  <Component id="btnSimulationPanel" alignment="2" max="32767" attributes="0"/>
-                  <Component id="btnCreateAccount" alignment="2" max="32767" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="lblDynamicAccountType" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Component id="btnTransactionDetails" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="13" pref="39" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblDynamicAccountType" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnSimulationPanel" max="32767" attributes="0"/>
+                  <Component id="btnCreateAccount" alignment="0" pref="177" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,23 +86,14 @@
               <Component id="lblDynamicAccountType" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnCreateAccount" min="-2" pref="54" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnSimulationPanel" min="-2" pref="54" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnMonthlyGraph" min="-2" pref="54" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnTransactionDetails" min="-2" pref="54" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnTransactionDetails">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Transaction Details"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnCreateAccount">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create New Account"/>
@@ -121,16 +104,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnSimulationPanel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Start Simulation"/>
+        <Property name="text" type="java.lang.String" value="Simulation"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimulationPanelActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnMonthlyGraph">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Monthly Graph"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTitle">
       <Properties>
