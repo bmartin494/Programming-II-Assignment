@@ -1,6 +1,6 @@
 /**
  * This is the JFrame class for the Control Panel GUI.
- * It is the first panel that users see upon starting the application.
+ * It is the first panel that user sees upon starting the application.
  * From here they can access all other forms/features of the app.
  * 
  * Create Account allows the user to do actions from 5a) to c) in the requirements.
@@ -13,6 +13,7 @@
  * Created by: Ben Martin
  * Last Edited: 21/11/18
  */
+
 package UI_Components;
 
 // Import List
@@ -145,10 +146,13 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
         int accCheck = CreateAccountJFrame.newAccount.getAccountType();
         
         // check to see that the user has created an account before they can access the simulation panel
-        // accountType is defaulted to the value of 2, to allow the check for any account having been created.)
+        // accountType is defaulted to the value of 2, to allow the check for any account having been created.
         if (accCheck != 2)
         {
+            // take user to SimulatorJFrame
             new SimulatorJFrame().setVisible(true);
+            
+            // hide the control panel
             this.setVisible(false);
             this.dispose();
         }
