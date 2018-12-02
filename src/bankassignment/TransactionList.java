@@ -11,15 +11,11 @@
 
 package bankassignment;
 
-
+// Import List
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Rory
- */
 public class TransactionList {
     
     private final List<Transaction> transList = new ArrayList<>();

@@ -3,7 +3,7 @@
  * This will hold all the necessary methods that both it's child classes 
  * (Savings & Current) will require.
  * 
- * Created by: Rory Sproule
+ * Created by: Rory Sproule 
  * Last Edited: 21/11/18
  */
 
@@ -13,7 +13,6 @@ public class Account {
     
     int accountType = 2;
     double accountBalance;
-    
     
     public void setDeposit(double amountToDeposit){
         // default class gets overwritten in sub classes

@@ -8,6 +8,7 @@
  * Created by: Ben Martin
  * Last Edited: 21/11/18
  */ 
+
 package UI_Components;
 
 // Import List
@@ -23,11 +24,11 @@ public class SimulatorJFrame extends javax.swing.JFrame {
      * Creates new form SimulatorJFrame
      */
     
-    private static boolean simStatus = true;
+    private boolean isRunning = false;
     private static int seconds = 5;
     private static int month = 0;
     
-    private final static TransactionList list = new TransactionList();
+    private final static TransactionList transList = new TransactionList();
     private final Account acc = CreateAccountJFrame.newAccount;
     
     public SimulatorJFrame() {
@@ -41,8 +42,8 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         displayAccountDetails();
         
         // set maximum and minimum account balances to the initial balance
-        list.setMaxBalance(acc.getAccountBalance());
-        list.setMinBalance(acc.getAccountBalance());
+        transList.setMaxBalance(acc.getAccountBalance());
+        transList.setMinBalance(acc.getAccountBalance());
         
         // add initial balance to the ListBox to improve readability
         lstTransactions.add("Initial Balance: £" + acc.getAccountBalance());
@@ -266,7 +267,18 @@ public class SimulatorJFrame extends javax.swing.JFrame {
 
     private void btnStartSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartSimulationActionPerformed
         
-        startSimulation();
+        // ensure the simulation isn't already running before commencing
+        if (isRunning == false)
+        {
+            startSimulation();
+            isRunning = true;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "The simulation is already running", 
+                "Simulation in Progress", JOptionPane.WARNING_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnStartSimulationActionPerformed
 
     private void startSimulation()
@@ -280,8 +292,10 @@ public class SimulatorJFrame extends javax.swing.JFrame {
          * every second, and once it hits 0, the monthly processes are carried out.
          */
 
+   
         // set the simulation to running
-        simStatus = true;
+        isRunning = true;
+        
         
         Thread t = new Thread()
         {
@@ -289,7 +303,7 @@ public class SimulatorJFrame extends javax.swing.JFrame {
             {
                 for(;;)
                 {
-                    if(simStatus == true)
+                    if(isRunning == true)
                     {
                         // if the simulation is still running, restart 5 second countdown
                         beginCountdown();
@@ -301,7 +315,6 @@ public class SimulatorJFrame extends javax.swing.JFrame {
                     }
                 }
             }
-            
         };
         
         // start the new thread
@@ -337,10 +350,10 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         newTrans.generateTransaction();
         
         // add transaction to TransactionList
-        list.getList().add(newTrans);
+        transList.getList().add(newTrans);
         
         // check if the new balance is now the minimum or maximum balance of the account
-        list.compareNewBalance(acc.getAccountBalance(), month);
+        transList.compareNewBalance(acc.getAccountBalance(), month);
         
         // update Simulator GUI Components
         updateGUI(newTrans);
@@ -379,23 +392,25 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     
     private void addTransactionToListBox(Transaction newTrans)
     {
-        
         // output the details of the transaction to the list box in a suitable format
         lstTransactions.add("NEW TRANSACTION:");
         lstTransactions.add("Month: " + newTrans.getMonth());
         lstTransactions.add("Type: " + transTypeString(newTrans));
         lstTransactions.add("Value: £" + newTrans.getTransValue());
+        
         // if its a savings account, output the interest calculated
         if (acc.getAccountType() == 1)
         {
             lstTransactions.add("Interest: £" + String.format("%.2f", acc.getInterest()));
         }
         lstTransactions.add("New Balance: £" + String.format("%.2f", acc.getAccountBalance()));
+        
         // if the transaction ran into an error, output it
         if(!newTrans.getErrorMessage().isEmpty())
         {
             lstTransactions.add(newTrans.getErrorMessage());
         }
+        
         lstTransactions.add("----------------------------------------");
     }
     
@@ -455,7 +470,8 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     private void btnStopSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopSimulationActionPerformed
         
         // set status of the simulation to false to pause it
-        simStatus = false;
+        isRunning = false;
+        
         JOptionPane.showMessageDialog(null, "Click Start Simulation to resume.", 
                 "Simulation Stopped", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnStopSimulationActionPerformed
@@ -463,7 +479,8 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     private void btnBackNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackNavActionPerformed
         
         // stop the simulation when returning to the control panel
-        simStatus = false;
+        isRunning = false;
+        
         new ControlPanelJFrame().setVisible(true);
         this.setVisible(false);
         this.dispose();
@@ -471,17 +488,17 @@ public class SimulatorJFrame extends javax.swing.JFrame {
 
     private void btnMaxMinBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaxMinBalanceActionPerformed
         
-        
-        if (simStatus = true)
+        // pause the simulation if it's currently running
+        if (isRunning == true)
         {
-            simStatus = false;
-            JOptionPane.showMessageDialog(null, "The simulation has been paused, to allow the max and "
+            isRunning = false;
+            JOptionPane.showMessageDialog(null, "The simulation has been paused to allow the max and "
                     + "min account balances report to be viewed. \nClick Start Simulation to resume.", 
                 "Simulation Stopped", JOptionPane.WARNING_MESSAGE);
         }
         
         // output the maximum and minimum values the balance have been so far in the simulation
-        list.getMaxAndMinBalances();
+        transList.getMaxAndMinBalances();
     }//GEN-LAST:event_btnMaxMinBalanceActionPerformed
 
     private void btnMonthlyBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonthlyBalanceActionPerformed

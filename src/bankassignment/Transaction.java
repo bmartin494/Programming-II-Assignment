@@ -75,7 +75,7 @@ public class Transaction
                 // output error message
                 JOptionPane.showMessageDialog(null, "Sorry, this transaction will be more than your overdraft!", 
                         "Invalid Transaction", JOptionPane.ERROR_MESSAGE);
-                errorMessage = ("Transaction would've exceeded the overdraft.");
+                errorMessage = ("INVALID TRANSACTION: Transaction would've exceeded the overdraft.");
                 result = false;
             }
         }
@@ -92,7 +92,7 @@ public class Transaction
                     // correct error message
                     JOptionPane.showMessageDialog(null, "Sorry, you've made too many withdraws this year!", 
                         "Invalid Transaction", JOptionPane.ERROR_MESSAGE);
-                    errorMessage = ("Too many withdraws have been made this year.");
+                    errorMessage = ("INVALID TRANSACTION: Too many withdraws have been made this year.");
                     result = false;
                 }
                 // ensure a withdrawal won't exceed the £100 minimum balance
@@ -100,7 +100,7 @@ public class Transaction
                 {
                     JOptionPane.showMessageDialog(null, "Sorry, you can't leave less than £100 in your savings account!", 
                         "Invalid Transaction", JOptionPane.ERROR_MESSAGE);
-                    errorMessage = ("Account can't have less than £100.");
+                    errorMessage = ("INVALID TRANSACTION: Account can't have less than £100.");
                     result = false;
                 }
             }
