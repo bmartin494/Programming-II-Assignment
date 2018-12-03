@@ -27,7 +27,7 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     private static int seconds = 5;
     private static int month = 0;
     
-    private final static TransactionList list = new TransactionList();
+    public static TransactionList transList = new TransactionList();
     private final Account acc = CreateAccountJFrame.newAccount;
     
     public SimulatorJFrame() {
@@ -41,8 +41,8 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         displayAccountDetails();
         
         // set maximum and minimum account balances to the initial balance
-        list.setMaxBalance(acc.getAccountBalance());
-        list.setMinBalance(acc.getAccountBalance());
+        transList.setMaxBalance(acc.getAccountBalance());
+        transList.setMinBalance(acc.getAccountBalance());
         
         // add initial balance to the ListBox to improve readability
         lstTransactions.add("Initial Balance: £" + acc.getAccountBalance());
@@ -129,6 +129,11 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         });
 
         lstTransactions.setName(""); // NOI18N
+        lstTransactions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lstTransactionsActionPerformed(evt);
+            }
+        });
 
         btnMaxMinBalance.setText("Max & Min Balance Report");
         btnMaxMinBalance.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +198,7 @@ public class SimulatorJFrame extends javax.swing.JFrame {
                                     .addComponent(lblAccountType)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblCountdown)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(lblWithdrawName)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblWithdrawNum))))
@@ -337,10 +342,10 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         newTrans.generateTransaction();
         
         // add transaction to TransactionList
-        list.getList().add(newTrans);
+        transList.getList().add(newTrans);
         
         // check if the new balance is now the minimum or maximum balance of the account
-        list.compareNewBalance(acc.getAccountBalance(), month);
+        transList.compareNewBalance(acc.getAccountBalance(), month);
         
         // update Simulator GUI Components
         updateGUI(newTrans);
@@ -481,12 +486,17 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         }
         
         // output the maximum and minimum values the balance have been so far in the simulation
-        list.getMaxAndMinBalances();
+        transList.getMaxAndMinBalances();
     }//GEN-LAST:event_btnMaxMinBalanceActionPerformed
 
     private void btnMonthlyBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonthlyBalanceActionPerformed
         // TODO add your handling code here:
+        MonthlyGraph.drawGraph();
     }//GEN-LAST:event_btnMonthlyBalanceActionPerformed
+
+    private void lstTransactionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lstTransactionsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstTransactionsActionPerformed
     
     /**
      * @param args the command line arguments

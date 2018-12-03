@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  */
 public class TransactionList {
     
-    private final List<Transaction> transList = new ArrayList<>();
+    public List<Transaction> transList = new ArrayList<>();
     
     private double maxBalance, minBalance;
     private int maxMonth, minMonth;
