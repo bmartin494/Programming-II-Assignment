@@ -65,7 +65,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         iconAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI_Components/Images/rsz_1createaccount (1).png"))); // NOI18N
         iconAccount.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        iconAccount.setPreferredSize(new java.awt.Dimension(64, 64));
 
         createaccount.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         createaccount.setText("Create Account");
@@ -76,7 +75,7 @@ public class MainMenu extends javax.swing.JFrame {
             CreateAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CreateAccountLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(iconAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(iconAccount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(createaccount)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -86,7 +85,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(CreateAccountLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(createaccount))
-            .addComponent(iconAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(iconAccount)
         );
 
         iconSim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI_Components/Images/rsz_360_video_degree_video_reality_rift_virtual_vr_motion_simulation-512.png"))); // NOI18N
@@ -130,7 +129,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(graphIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(viewgraph)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ViewGraphLayout.setVerticalGroup(
             ViewGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,23 +268,21 @@ public class MainMenu extends javax.swing.JFrame {
         WelcomePanelLayout.setHorizontalGroup(
             WelcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(WelcomePanelLayout.createSequentialGroup()
-                .addGroup(WelcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(WelcomePanelLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(WelcomeLabel))
-                    .addGroup(WelcomePanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(WelcomeLabel)
+                .addContainerGap(246, Short.MAX_VALUE))
+            .addGroup(WelcomePanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         WelcomePanelLayout.setVerticalGroup(
             WelcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(WelcomePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(WelcomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
