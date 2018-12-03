@@ -13,7 +13,8 @@ public class Account {
     
     int accountType = 2;
     double accountBalance;
-    
+    double initialDeposit;
+
     public void setDeposit(double amountToDeposit){
         // default class gets overwritten in sub classes
     }
@@ -28,6 +29,15 @@ public class Account {
     
     public double getAccountBalance() {
         return accountBalance;
+    }
+    
+    //while similar to the method above, this is still required to set the initial deposit amount that is then not overwritten
+    //so that the program always knows what value to start at when creating the graph
+    public void setInitialDeposit(double amountToDeposit){
+        //defafult class that gets overwritten
+    }
+    public double getInitialDeposit() {
+        return initialDeposit;
     }
     
     public int getNumOfWithdrawals() {

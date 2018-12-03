@@ -28,7 +28,9 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     private static int seconds = 5;
     private static int month = 0;
     
-    private final static TransactionList transList = new TransactionList();
+
+    public static TransactionList transList = new TransactionList();
+
     private final Account acc = CreateAccountJFrame.newAccount;
     
     public SimulatorJFrame() {
@@ -175,6 +177,7 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         lblNameAccBalance.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         lblNameAccBalance.setText("Account Balance:");
 
+
         lblDynamicBalance.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblDynamicBalance.setText("£0");
 
@@ -305,7 +308,9 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -572,7 +577,7 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         }
         return type;
     }
-        
+
     /**
      * @param args the command line arguments
      */

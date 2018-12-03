@@ -21,6 +21,7 @@ public class SavingsAccount extends Account {
     { 
         this.accountType = 1;
         this.accountBalance = initialBalance;
+        this.initialDeposit = initialBalance;
     }
     
     @Override
@@ -37,6 +38,14 @@ public class SavingsAccount extends Account {
         this.interest = (this.accountBalance*0.03);
         this.addInterest();
         this.accountBalance = this.accountBalance + amountToDeposit;
+    }
+    
+    //while similar to the method above, this is still required to set the initial deposit amount that is then not overwritten
+    //so that the program always knows what value to start at when creating the graph
+    @Override
+    public void setInitialDeposit(double amountToDeposit){
+        this.initialDeposit = this.initialDeposit + amountToDeposit;
+        
     }
     
     @Override
