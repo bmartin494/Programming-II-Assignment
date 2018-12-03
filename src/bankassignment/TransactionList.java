@@ -11,15 +11,11 @@
 
 package bankassignment;
 
-
+// Import List
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Rory
- */
 public class TransactionList {
     
     public List<Transaction> transList = new ArrayList<>();
@@ -86,8 +82,8 @@ public class TransactionList {
          * as there technically hasn't been a month yet.
          * */
         
-        JOptionPane.showMessageDialog(null, ("The maximum balance occured in month " + maxMonth + "\nWith a value of: £" + String.format("%.2f", maxBalance) 
-                + "\nThe minimum balance occured in month " + minMonth + "\n With a value of: £" + String.format("%.2f", minBalance)), 
+        JOptionPane.showMessageDialog(null, ("Maximum Balance: \nMonth: " + maxMonth + "\nValue: £" + String.format("%.2f", maxBalance) 
+                + "\n\nMinimum Balance: \nMonth: " + minMonth + "\nValue: £" + String.format("%.2f", minBalance)), 
                "Max & Min Account Balances", JOptionPane.INFORMATION_MESSAGE);
 
     }

@@ -1,6 +1,6 @@
 /**
  * This is the JFrame class for the Control Panel GUI.
- * It is the first panel that users see upon starting the application.
+ * It is the first panel that user sees upon starting the application.
  * From here they can access all other forms/features of the app.
  * 
  * Create Account allows the user to do actions from 5a) to c) in the requirements.
@@ -13,6 +13,7 @@
  * Created by: Ben Martin
  * Last Edited: 21/11/18
  */
+
 package UI_Components;
 
 // Import List
@@ -40,19 +41,28 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
-        btnCreateAccount = new javax.swing.JButton();
-        btnSimulationPanel = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         lblDynamicAccountType = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuFile = new javax.swing.JMenu();
-        exit_jMenuItem = new javax.swing.JMenuItem();
-        jMenuHelp = new javax.swing.JMenu();
+        btnCreateAccount = new javax.swing.JButton();
+        btnSimulationPanel = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+
+        lblTitle.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        lblTitle.setText("Control Panel:");
+
+        lblDynamicAccountType.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblDynamicAccountType.setText("Savings/Current");
+
+        btnCreateAccount.setBackground(new java.awt.Color(153, 204, 255));
+        btnCreateAccount.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCreateAccount.setText("Create New Account");
         btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,56 +70,45 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnSimulationPanel.setText("Simulation");
+        btnSimulationPanel.setBackground(new java.awt.Color(153, 204, 255));
+        btnSimulationPanel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSimulationPanel.setText("Simulation Mode");
         btnSimulationPanel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSimulationPanelActionPerformed(evt);
             }
         });
 
-        lblTitle.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        lblTitle.setText("Control Panel");
-
-        lblDynamicAccountType.setText("Savings/Current");
-
-        jMenuFile.setText("File");
-
-        exit_jMenuItem.setText("Exit");
-        exit_jMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setBackground(new java.awt.Color(153, 204, 255));
+        btnExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exit_jMenuItemActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
-        jMenuFile.add(exit_jMenuItem);
 
-        jMenuBar1.add(jMenuFile);
-
-        jMenuHelp.setText("Help");
-        jMenuBar1.add(jMenuHelp);
-
-        setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(13, 39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDynamicAccountType)
-                    .addComponent(lblTitle))
-                .addGap(55, 55, 55))
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSimulationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                    .addComponent(btnCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTitle)
+                            .addComponent(lblDynamicAccountType))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDynamicAccountType)
@@ -117,16 +116,24 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
                 .addComponent(btnCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSimulationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void exit_jMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_jMenuItemActionPerformed
-
-        System.exit(0);
-    }//GEN-LAST:event_exit_jMenuItemActionPerformed
     
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         
@@ -145,20 +152,28 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
         int accCheck = CreateAccountJFrame.newAccount.getAccountType();
         
         // check to see that the user has created an account before they can access the simulation panel
-        // accountType is defaulted to the value of 2, to allow the check for any account having been created.)
+        // accountType is defaulted to the value of 2, to allow the check for any account having been created.
         if (accCheck != 2)
         {
+            // take user to SimulatorJFrame
             new SimulatorJFrame().setVisible(true);
+            
+            // hide the control panel
             this.setVisible(false);
             this.dispose();
         }
         else
         {
             // output error message if an account hasn't been created yet
-            JOptionPane.showMessageDialog(null, "You must first create a new account!", "Error Message", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "You must first create a new account!", "Error Message", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_btnSimulationPanelActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,12 +212,10 @@ public class ControlPanelJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateAccount;
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnSimulationPanel;
-    private javax.swing.JMenuItem exit_jMenuItem;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuFile;
-    private javax.swing.JMenu jMenuHelp;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDynamicAccountType;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
