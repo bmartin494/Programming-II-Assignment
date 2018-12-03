@@ -353,7 +353,18 @@ public class SimulatorJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartSimulationActionPerformed
 
     private void btnMonthlyBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonthlyBalanceActionPerformed
-        // TODO add your handling code here:
+        
+        // pause the simulation if it's currently running
+        if (isRunning == true)
+        {
+            isRunning = false;
+            JOptionPane.showMessageDialog(this, "The simulation has been paused to allow the monthly balance"
+                    + " graph to be viewed. \nClick Start Simulation to resume.",
+                "Simulation Stopped", JOptionPane.WARNING_MESSAGE);
+        }
+
+        // output the monthly balances there have been so far in the simulation
+        
     }//GEN-LAST:event_btnMonthlyBalanceActionPerformed
 
     private void btnMaxMinBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaxMinBalanceActionPerformed
