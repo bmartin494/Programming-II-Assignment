@@ -369,7 +369,7 @@ public class SimulatorJFrame extends javax.swing.JFrame {
         }
 
         // output the monthly balances there have been so far in the simulation
-        
+        MonthlyGraph.drawGraph();
     }//GEN-LAST:event_btnMonthlyBalanceActionPerformed
 
     private void btnMaxMinBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaxMinBalanceActionPerformed
